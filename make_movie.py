@@ -1,9 +1,11 @@
+#%%
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
 #     "pathlib",
 #     "pillow",
 #     "pillow-heif",
+#     "ipykernel",
 # ]
 # ///
 
@@ -16,6 +18,7 @@ from pillow_heif import register_heif_opener
 
 register_heif_opener()
 
+#%%
 # --- CONFIGURATION ---
 SOURCE_DIR = Path("pictures_and_movie_clips")
 TEMP_DIR = Path("temp_jpgs")

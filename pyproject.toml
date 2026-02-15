@@ -1,0 +1,25 @@
+[project]
+name = "make-movie"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "dlhjel", email = "dlhjel@gmail.com" }
+]
+license = "MIT"
+requires-python = ">=3.13"
+dependencies = [
+    "pathlib",
+    "pillow",
+    "pillow-heif",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+]
+
+# following is required
+[build-system]
+requires = ["uv_build>=0.10.2,<0.11.0"]
+build-backend = "uv_build"
