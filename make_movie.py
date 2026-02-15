@@ -27,8 +27,8 @@ OUTPUT_FILE = "myvideo.mp4"
 RESOLUTION = "1920:1080"
 
 # Specify by filename (e.g., "IMG_7561.mov" or "IMG_7022.HEIC")
-FIRST_FILE = "moose.mov" 
-LAST_FILE = "downy.jpg"
+FIRST_FILE = "redheaded.jpg" 
+LAST_FILE = "moose.mp4"
 # ---------------------
 
 def get_duration(file_path):
@@ -81,13 +81,19 @@ def create_movie():
     cmd = ["ffmpeg", "-y"]
     
     for f in ordered_inputs:
-        if f.suffix.lower() == ".heic":
+
+        if f in picture_paths:
+            # f is a picture
+            # first assume f is a jpg
             target = TEMP_DIR / f"{f.stem}.jpg"
             if not target.exists():
+                # target is not a jpg so convert it
                 Image.open(f).save(target, "JPEG")
             cmd.extend(["-loop", "1", "-t", str(img_duration), "-i", str(target)])
             final_input_paths.append(target)
+            
         else:
+            # f is a video
             cmd.extend(["-i", str(f)])
             final_input_paths.append(f)
             
@@ -117,5 +123,10 @@ def create_movie():
     shutil.rmtree(TEMP_DIR)
     print(f"Success! Movie synced to music length.")
 
+    return ordered_inputs
+
 if __name__ == "__main__":
-    create_movie()
+    out = create_movie()
+
+out
+#%%

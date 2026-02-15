@@ -2,6 +2,33 @@
 
 A streamlined Python utility to merge iPhone `.mov` videos and `.heic` photos into a single stabilized 1080p MP4. Designed to be run via `uv` for zero-config dependency management.
 
+## Usage
+
+### File structure
+
+```
+
+- make_movie.py              # main script
+
+- input
+  - background_audio.mp3     # audio track
+
+  - pictures_and_movie_clips folder containing
+    - video files (*.mov, *.mp4)
+    - photo files (*.jpg, *.heic)
+
+- output
+  - mymovie.mp4
+  - pyproject.toml = setup file created when execute make_movie.py
+
+```
+
+### Execution
+
+Run the script using uv. This will automatically handle the installation of Pillow and pillow-heif in a temporary isolated environment:
+
+`uv run make_movie.py`
+
 ## Requirements
 
 - **FFmpeg**: Must be installed and accessible in your system's PATH.
@@ -17,36 +44,38 @@ A streamlined Python utility to merge iPhone `.mov` videos and `.heic` photos in
     curl -LsSf https://astral.sh/uv/install.sh | sh
     ```
 
-  - set up a project
+## Notes
 
-    - add dependencies to the source file, run script craete pyproject.tomlj, then, if want to create .venv, run `uv sync --no-install-project` 
+  - dependencies added to the source file
 
-      ```
-      # /// script
-      # requires-python = ">=3.11"
-      # dependencies = [
-      #     "pathlib",
-      #     "pillow",
-      #     "pillow-heif",
-      #     "ipykernel",
-      # ]
-      # ///
-      ```
+    ```
+    # /// script
+    # requires-python = ">=3.11"
+    # dependencies = [
+    #     "pathlib",
+    #     "pillow",
+    #     "pillow-heif",
+    #     "ipykernel",
+    # ]
+    # ///
+    ```
 
-    - other potential solution
+  - if execute the script or if separately create pyproject.toml file, can create and retain virtual environment (.venv) for use in vscode if use 
 
-      ```
-      # https://blog.phle.dev/posts/python-setup-2024/
+    `uv sync --no-install-project`
 
-      # initialize project
-      uv init . --package
 
-      # Add dev dependencies:
-      uv add --dev ipykernel
+  - other potential solution
+     ```
+    # https://blog.phle.dev/posts/python-setup-2024/
+    # initialize project
+    uv init . --package
+    # Add dev dependencies:
+    uv add --dev ipykernel
       
-      # Add project dependencies
-      uv add pathlib pillow pillow-heif
-      ```
+    # Add project dependencies
+    uv add pathlib pillow pillow-heif
+    ```
 
   - following structue is created
     - `pyproject.toml` file
@@ -66,30 +95,3 @@ A streamlined Python utility to merge iPhone `.mov` videos and `.heic` photos in
     uv sync --upgrade
     `
   
-
-
-## Folder Structure
-
-The script expects the following layout:
-
-```text
-
-- make_movie.py            # The script
-
-- input
-  - background_audio.mp3     # Your looped audio track
-
-  - pictures_and_movie_clips
-
-    - xxxx.mov         # Source videos
-    - xxxx.mp4         # Source videos
-    - xxx.jpg          # Source photos
-    - xxxx.heic        # Source photos
-
-```
-
-## Execution
-
-Run the script using uv. This will automatically handle the installation of Pillow and pillow-heif in a temporary isolated environment:
-
-`uv run make_movie.py`
