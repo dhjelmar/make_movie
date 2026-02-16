@@ -1,33 +1,24 @@
 # Media Compiler
 
-A streamlined Python utility to merge iPhone `.mov` videos and `.heic` photos into a single stabilized 1080p MP4. Designed to be run via `uv` for zero-config dependency management.
+Creates mp4 movie using FFmpeg from mov, mp4, jpg, and heic files. Designed to be run via `uv` for zero-config dependency management.
 
 ## Usage
 
-### File structure
+Input:
+  - background_audio.mp3
+  - image and/or movie files
 
-```
+Input Options:
+  - Supply list of image and/or movie files in files_order.txt file.
+  - Supply image and/or movie files in pictures_and_movie_clips folder.
 
-- make_movie.py              # main script
-
-- input
-  - background_audio.mp3     # audio track
-
-  - pictures_and_movie_clips folder containing
-    - video files (*.mov, *.mp4)
-    - photo files (*.jpg, *.heic)
-
-- output
+Output:
   - mymovie.mp4
-  - pyproject.toml = setup file created when execute make_movie.py
 
-```
+Execution:
+- Run the script using uv. This automatically installs dependencies in a temporary virtual environment.
 
-### Execution
-
-Run the script using uv. This will automatically handle the installation of Pillow and pillow-heif in a temporary isolated environment:
-
-`uv run make_movie.py`
+  `uv run make_movie.py`
 
 ## Requirements
 
@@ -46,7 +37,7 @@ Run the script using uv. This will automatically handle the installation of Pill
 
 ## Notes
 
-  - dependencies added to the source file
+  - dependencies added to the source file for use by uv
 
     ```
     # /// script
@@ -60,28 +51,13 @@ Run the script using uv. This will automatically handle the installation of Pill
     # ///
     ```
 
-  - if execute the script or if separately create pyproject.toml file, can create and retain virtual environment (.venv) for use in vscode if use 
+  - if execute the script, it will create pyproject.toml file. The pyproject.toml file can create and retain the virtual environment (.venv) in the project folder for use in vscode with the following
 
     `uv sync --no-install-project`
 
+  - alternately can create a minimal pyproject.toml file with
 
-  - other potential solution
-     ```
-    # https://blog.phle.dev/posts/python-setup-2024/
-    # initialize project
-    uv init . --package
-    # Add dev dependencies:
-    uv add --dev ipykernel
-      
-    # Add project dependencies
-    uv add pathlib pillow pillow-heif
-    ```
-
-  - following structue is created
-    - `pyproject.toml` file
-    - `.venv/` local virtual environment
-    - `uv.lock` file which records version of every dependency
-    - `src/myapp/__init__.py` project structure
+    `uv sync --bare`
 
   - to sync between `pyproject.toml` and versions in `uv.lock`:
 

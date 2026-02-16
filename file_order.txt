@@ -1,0 +1,5 @@
+pictures_and_movie_clips/downy.jpg
+pictures_and_movie_clips/moose.mp4
+pictures_and_movie_clips/redheaded.jpg
+pictures_and_movie_clips/penguin.mp4
+pictures_and_movie_clips/Pileated.jpg
