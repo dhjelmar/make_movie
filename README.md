@@ -51,23 +51,9 @@ Execution:
     # ///
     ```
 
-  - if execute the script, it will create pyproject.toml file. The pyproject.toml file can create and retain the virtual environment (.venv) in the project folder for use in vscode with the following
+  - To create .venv for use in vscode, execute the script to create pyproject.toml file then run:
 
     `uv sync --no-install-project`
 
-  - alternately can create a minimal pyproject.toml file with
-
-    `uv sync --bare`
-
-  - to sync between `pyproject.toml` and versions in `uv.lock`:
-
-    `
-    uv sync
-    `
-
-  - Or to update the packages and `uv.lock` (test before committing)
-
-    `
-    uv sync --upgrade
-    `
+    The no-install-project option is needed because the folder does not currently follow the expected organization for uv then would have been established if the project was created using `uv init`.
   
